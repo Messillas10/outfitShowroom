@@ -1,0 +1,17 @@
+{% extends "showroom/base.html" %}
+{% block title %}{{ style.name }}{% endblock %}
+{% block content %}
+<h2>Estilo: {{ style.name }}</h2>
+<hr class="sep">
+<h3>Outfits</h3>
+<ul class="clean">
+    {% for o in outfits %}
+    <li>
+        <a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a>
+        — <span class="meta">{{ o.occasion.name }}</span>
+    </li>
+    {% empty %}
+    <li>No hay outfits con este estilo.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

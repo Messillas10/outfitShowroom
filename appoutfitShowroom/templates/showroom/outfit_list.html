@@ -1,0 +1,25 @@
+{% extends "showroom/base.html" %}
+{% block title %}Outfits{% endblock %}
+{% block content %}
+<h2>Todos los outfits</h2>
+<p class="section-lead">Explora la colección completa. En cada outfit puedes ver su ocasión y estilos.</p>
+<ul class="clean">
+    {% for o in outfits %}
+    <li>
+        <a href="{% url 'showroom:outfit_detail' o.pk %}"><strong>{{ o.title }}</strong></a>
+        — <span class="meta">
+        <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}">{{ o.occasion.name }}</a>
+        </span>
+        {% if o.styles.all %}
+        <span class="badges">
+            {% for s in o.styles.all %}
+            <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
+            {% endfor %}
+        </span>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>No hay outfits.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

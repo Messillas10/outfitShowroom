@@ -1,0 +1,25 @@
+{% extends "showroom/base.html" %}
+{% block title %}{{ outfit.title }}{% endblock %}
+{% block content %}
+<h2>{{ outfit.title }}</h2>
+{% if outfit.image_url %}
+    <figure class="figure">
+    <img src="{{ outfit.image_url }}" alt="{{ outfit.title }}">
+    </figure>
+{% endif %}
+{% if outfit.description %}
+    <p class="lead">{{ outfit.description }}</p>
+{% endif %}
+
+<p class="meta">Ocasión:
+    <a href="{% url 'showroom:occasion_detail' outfit.occasion.slug %}">{{ outfit.occasion.name }}</a>
+</p>
+
+{% if outfit.styles.all %}
+    <div class="badges" aria-label="Estilos">
+    {% for s in outfit.styles.all %}
+        <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
+    {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

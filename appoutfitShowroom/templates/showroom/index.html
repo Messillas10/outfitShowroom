@@ -2,20 +2,28 @@
 {% block title %}Portada — Outfit Showroom{% endblock %}
 {% block content %}
 <h2>Un outfit por ocasión</h2>
+<p class="section-lead">Selección automática del outfit más reciente en cada ocasión.</p>
 
 <div class="grid">
     {% for o in featured_outfits %}
     <article class="card">
-    {% if o.image_url %}<img src="{{ o.image_url }}" alt="{{ o.title }}">{% endif %}
-    <h3><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></h3>
-    <p>Ocasión:
+    {% if o.image_url %}
+        <img src="{{ o.image_url }}" alt="{{ o.title }}">
+    {% endif %}
+    <div class="card-body">
+        <h3 class="card-title"><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></h3>
+        <p class="meta">
+        Ocasión:
         <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}">{{ o.occasion.name }}</a>
-    </p>
-    <p>Estilos:
-        {% for s in o.styles.all %}
-        <a href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>{% if not forloop.last %}, {% endif %}
-        {% endfor %}
-    </p>
+        </p>
+        {% if o.styles.all %}
+        <div class="badges" aria-label="Estilos">
+            {% for s in o.styles.all %}
+            <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
     </article>
     {% empty %}
     <p>No hay outfits aún.</p>

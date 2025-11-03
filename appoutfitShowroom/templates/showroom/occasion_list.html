@@ -1,0 +1,13 @@
+{% extends "showroom/base.html" %}
+{% block title %}Ocasiones{% endblock %}
+{% block content %}
+<h2>Ocasiones</h2>
+<p class="section-lead">Categorías de uso para encontrar outfits adecuados.</p>
+<ul class="clean">
+    {% for o in occasions %}
+    <li><a href="{% url 'showroom:occasion_detail' o.slug %}">{{ o.name }}</a></li>
+    {% empty %}
+    <li>No hay ocasiones.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
