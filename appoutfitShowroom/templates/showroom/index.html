@@ -1,0 +1,24 @@
+{% extends "showroom/base.html" %}
+{% block title %}Portada — Outfit Showroom{% endblock %}
+{% block content %}
+<h2>Un outfit por ocasión</h2>
+
+<div class="grid">
+    {% for o in featured_outfits %}
+    <article class="card">
+    {% if o.image_url %}<img src="{{ o.image_url }}" alt="{{ o.title }}">{% endif %}
+    <h3><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></h3>
+    <p>Ocasión:
+        <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}">{{ o.occasion.name }}</a>
+    </p>
+    <p>Estilos:
+        {% for s in o.styles.all %}
+        <a href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    </article>
+    {% empty %}
+    <p>No hay outfits aún.</p>
+    {% endfor %}
+</div>
+{% endblock %}
