@@ -1,32 +1,54 @@
 {% extends "showroom/base.html" %}
 {% block title %}Portada — Outfit Showroom{% endblock %}
 {% block content %}
-<h2>Un outfit por ocasión</h2>
-<p class="section-lead">Selección automática del outfit más reciente en cada ocasión.</p>
+<h2>Inspiración por ocasión</h2>
+<p class="section-lead">Descubre nuestras sugerencias más recientes para cada momento especial.</p>
 
-<div class="grid">
+<div class="featured-grid">
     {% for o in featured_outfits %}
-    <article class="card">
-    {% if o.image_url %}
-        <img src="{{ o.image_url }}" alt="{{ o.title }}">
-    {% endif %}
-    <div class="card-body">
-        <h3 class="card-title"><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></h3>
-        <p class="meta">
-        Ocasión:
-        <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}">{{ o.occasion.name }}</a>
-        </p>
-        {% if o.styles.all %}
-        <div class="badges" aria-label="Estilos">
-            {% for s in o.styles.all %}
-            <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
-            {% endfor %}
+    <article class="featured-card">
+        {% if o.image_url %}
+        <div class="card-image">
+            <img src="{{ o.image_url }}" alt="{{ o.title }}">
+            <div class="card-overlay">
+                <h3 class="card-title"><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></h3>
+                <p class="meta">
+                    <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}" class="occasion-tag">{{ o.occasion.name }}</a>
+                </p>
+            </div>
         </div>
         {% endif %}
-    </div>
+        <div class="card-body">
+            <p class="card-description">{{ o.description|truncatewords:15 }}</p>
+            {% if o.styles.all %}
+            <div class="badges" aria-label="Estilos">
+                {% for s in o.styles.all %}
+                <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
     </article>
     {% empty %}
-    <p>No hay outfits aún.</p>
+    <p class="empty-message">No hay outfits disponibles en este momento.</p>
     {% endfor %}
 </div>
+
+<section class="browse-all">
+    <h3>Explora por categoría</h3>
+    <div class="category-grid">
+        <a href="{% url 'showroom:outfit_list' %}" class="category-card">
+            <span class="category-icon">👗</span>
+            <h4>Todos los outfits</h4>
+        </a>
+        <a href="{% url 'showroom:occasion_list' %}" class="category-card">
+            <span class="category-icon">🎭</span>
+            <h4>Por ocasión</h4>
+        </a>
+        <a href="{% url 'showroom:style_list' %}" class="category-card">
+            <span class="category-icon">✨</span>
+            <h4>Por estilo</h4>
+        </a>
+    </div>
+</section>
 {% endblock %}

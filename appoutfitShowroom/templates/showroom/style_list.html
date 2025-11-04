@@ -2,12 +2,28 @@
 {% block title %}Estilos{% endblock %}
 {% block content %}
 <h2>Estilos</h2>
-<p class="section-lead">Enfoques estéticos que puedes combinar con cualquier ocasión.</p>
-<ul class="clean">
+<p class="section-lead">Explora diferentes estilos y encuentra el que mejor te representa.</p>
+
+<div class="grid">
     {% for s in styles %}
-    <li><a href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a></li>
+    <article class="card">
+        {% if s.outfits.first.image_url %}
+        <a href="{% url 'showroom:style_detail' s.slug %}" class="card-image">
+            <img src="{{ s.outfits.first.image_url }}" alt="Ejemplo de estilo {{ s.name }}">
+        </a>
+        {% endif %}
+        <div class="card-body">
+            <h3 class="card-title"><a href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a></h3>
+            <p class="meta">{{ s.outfits.count }} outfits disponibles</p>
+            <div class="badges">
+                {% for o in s.outfits.all|slice:":3" %}
+                <a class="badge" href="{% url 'showroom:occasion_detail' o.occasion.slug %}">{{ o.occasion.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </article>
     {% empty %}
-    <li>No hay estilos.</li>
+    <p class="empty-message">No hay estilos disponibles.</p>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

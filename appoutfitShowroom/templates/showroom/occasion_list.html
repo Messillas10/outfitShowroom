@@ -2,12 +2,26 @@
 {% block title %}Ocasiones{% endblock %}
 {% block content %}
 <h2>Ocasiones</h2>
-<p class="section-lead">Categorías de uso para encontrar outfits adecuados.</p>
-<ul class="clean">
+<p class="section-lead">Descubre outfits perfectos para cada momento especial.</p>
+
+<div class="grid">
     {% for o in occasions %}
-    <li><a href="{% url 'showroom:occasion_detail' o.slug %}">{{ o.name }}</a></li>
+    <article class="card">
+        {% if o.outfits.first.image_url %}
+        <a href="{% url 'showroom:occasion_detail' o.slug %}" class="card-image">
+            <img src="{{ o.outfits.first.image_url }}" alt="Outfit para {{ o.name }}">
+        </a>
+        {% endif %}
+        <div class="card-body">
+            <h3 class="card-title"><a href="{% url 'showroom:occasion_detail' o.slug %}">{{ o.name }}</a></h3>
+            {% if o.description %}
+            <p class="card-description">{{ o.description }}</p>
+            {% endif %}
+            <p class="meta">{{ o.outfits.count }} outfits disponibles</p>
+        </div>
+    </article>
     {% empty %}
-    <li>No hay ocasiones.</li>
+    <p class="empty-message">No hay ocasiones disponibles.</p>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

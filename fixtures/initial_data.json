@@ -1,0 +1,316 @@
+[
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 1,
+    "fields": {
+      "name": "Boda",
+      "slug": "boda",
+      "description": "Las bodas son ocasiones especiales que requieren atuendos elegantes y formales. Desde vestidos de gala hasta trajes sofisticados, estos looks están diseñados para celebrar con estilo mientras respetas la importancia del evento."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 2,
+    "fields": {
+      "name": "Cena de negocios",
+      "slug": "cena-de-negocios",
+      "description": "Las cenas de negocios combinan profesionalismo con un toque de elegancia informal. Los outfits deben proyectar confianza y competencia mientras permiten comodidad para una velada extendida de networking."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 3,
+    "fields": {
+      "name": "Día de playa",
+      "slug": "dia-de-playa",
+      "description": "Para disfrutar del sol y la arena con estilo, estos looks combinan comodidad y frescura. Tejidos ligeros y colores vibrantes que te permiten moverte libremente mientras mantienes un aspecto cuidado."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 4,
+    "fields": {
+      "name": "Entrevista laboral",
+      "slug": "entrevista-laboral",
+      "description": "Primera impresión es fundamental. Estos conjuntos profesionales están cuidadosamente seleccionados para proyectar competencia, seriedad y atención al detalle, ayudándote a destacar por las razones correctas."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 5,
+    "fields": {
+      "name": "Trabajo diario",
+      "slug": "trabajo-diario",
+      "description": "El equilibrio perfecto entre profesionalismo y comodidad para el día a día en la oficina. Looks versátiles que te permiten moverte de reuniones a presentaciones manteniendo un aspecto impecable."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 6,
+    "fields": {
+      "name": "Fiesta informal",
+      "slug": "fiesta-informal",
+      "description": "Diversión y estilo se encuentran en estos conjuntos perfectos para reuniones sociales casuales. Looks que te permiten expresar tu personalidad mientras mantienes un aspecto apropiado para el ambiente festivo."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 7,
+    "fields": {
+      "name": "Brunch de fin de semana",
+      "slug": "brunch-fin-de-semana",
+      "description": "Casual chic para esos relajados encuentros de fin de semana. Outfits que combinan confort y estilo, perfectos para disfrutar de una mañana tranquila con amigos."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.occasion",
+    "pk": 8,
+    "fields": {
+      "name": "Cóctel",
+      "slug": "coctel",
+      "description": "Elegancia moderna para eventos semi-formales. Estos looks sofisticados son perfectos para ocasiones especiales que requieren un toque de glamour sin llegar a ser completamente formales."
+    }
+  },
+
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 1,
+    "fields": {
+      "name": "Clásico",
+      "slug": "clasico",
+      "description": "Piezas atemporales y elegantes que nunca pasan de moda. El estilo clásico se caracteriza por cortes limpios, colores neutros y siluetas tradicionales que resisten el paso del tiempo."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 2,
+    "fields": {
+      "name": "Romántico",
+      "slug": "romantico",
+      "description": "Suaves y delicados detalles que evocan feminidad y dulzura. Volantes, encajes y estampados florales son característicos de este estilo que celebra la gracia y la delicadeza."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 3,
+    "fields": {
+      "name": "Sporty",
+      "slug": "sporty",
+      "description": "Comodidad y dinamismo se unen en este estilo atlético y casual. Incorpora elementos deportivos en looks cotidianos para un aspecto moderno y activo."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 4,
+    "fields": {
+      "name": "Grunge",
+      "slug": "grunge",
+      "description": "Rebelde y desenfadado, el estilo grunge mezcla elementos rockeros con piezas casual. Destacan las texturas desgastadas y las combinaciones inesperadas."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 5,
+    "fields": {
+      "name": "Minimalista",
+      "slug": "minimalista",
+      "description": "Menos es más. El minimalismo se centra en líneas limpias, colores básicos y siluetas simples pero impactantes. Perfecto para quienes aprecian la simplicidad elegante."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 6,
+    "fields": {
+      "name": "Urban-chic",
+      "slug": "urban-chic",
+      "description": "La sofisticación se encuentra con la calle en este estilo que mezcla elementos de moda urbana con toques elegantes. Moderno, versátil y siempre cool."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 7,
+    "fields": {
+      "name": "Boho",
+      "slug": "boho",
+      "description": "Espíritu libre y romántico que abraza patrones étnicos, tejidos naturales y siluetas fluidas. El estilo bohemio celebra la individualidad y el confort."
+    }
+  },
+  {
+    "model": "appoutfitShowroom.style",
+    "pk": 8,
+    "fields": {
+      "name": "Preppy",
+      "slug": "preppy",
+      "description": "Elegancia casual inspirada en el estilo universitario tradicional. Combina piezas clásicas con un toque juvenil y deportivo."
+    }
+  },
+
+    {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 1,
+    "fields": {
+      "title": "Elegancia Clásica en Negro",
+      "occasion": 1,
+      "styles": [1, 5],
+      "description": "Vestido largo de corte clásico en negro con detalles minimalistas. Ideal para bodas de noche, combina sofisticación atemporal con un toque moderno. El escote halter y la silueta fluida crean una figura elegante y distinguida.",
+      "image_url": "https://picsum.photos/id/1011/800/600",
+      "created_at": "2025-10-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 2,
+    "fields": {
+      "title": "Sophistication Urbana",
+      "occasion": 2,
+      "styles": [6, 5],
+      "description": "Traje pantalón de corte moderno en gris oscuro con blusa de seda. El diseño contemporáneo y los detalles minimalistas crean un look poderoso y refinado, perfecto para cenas ejecutivas donde la primera impresión es crucial.",
+      "image_url": "https://picsum.photos/id/1012/800/600",
+      "created_at": "2025-10-05T11:20:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 3,
+    "fields": {
+      "title": "Brisa Marina Chic",
+      "occasion": 3,
+      "styles": [3, 7],
+      "description": "Conjunto playero que combina comodidad y estilo con shorts de lino de corte alto, top cropped en tejido ligero y kimono estampado. Accesorios en fibras naturales completan este look fresco y sofisticado para días de playa.",
+      "image_url": "https://picsum.photos/id/1013/800/600",
+      "created_at": "2025-09-20T09:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 4,
+    "fields": {
+      "title": "Power Dressing",
+      "occasion": 4,
+      "styles": [1, 8],
+      "description": "Blazer estructurado con pantalón de corte recto en azul marino, camisa blanca impoluta y zapatos oxford. Un conjunto que transmite profesionalismo y confianza, fundamental para entrevistas laborales de alto nivel.",
+      "image_url": "https://picsum.photos/id/1014/800/600",
+      "created_at": "2025-10-10T08:30:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 5,
+    "fields": {
+      "title": "Modern Office Essential",
+      "occasion": 5,
+      "styles": [6, 5],
+      "description": "Falda midi plisada en tono neutro combinada con suéter de punto fino y botines. Un look versátil que mantiene el profesionalismo mientras permite moverse cómodamente por la oficina durante todo el día.",
+      "image_url": "https://picsum.photos/id/1015/800/600",
+      "created_at": "2025-09-30T14:15:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 6,
+    "fields": {
+      "title": "Night Out Edge",
+      "occasion": 6,
+      "styles": [6, 4],
+      "description": "Jeans rasgados de talle alto combinados con top metalizado y chaqueta de cuero. El perfecto balance entre actitud grunge y sofisticación urbana para una noche de fiesta con estilo.",
+      "image_url": "https://picsum.photos/id/1016/800/600",
+      "created_at": "2025-10-12T22:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 7,
+    "fields": {
+      "title": "Dulce Bohemia",
+      "occasion": 7,
+      "styles": [2, 7],
+      "description": "Vestido midi floral en tonos pastel con mangas abullonadas y detalles de encaje. Los accesorios artesanales y sandalias de tiras crean un look romántico perfecto para brunch al aire libre.",
+      "image_url": "https://picsum.photos/id/1017/800/600",
+      "created_at": "2025-10-15T20:10:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 8,
+    "fields": {
+      "title": "Smart Casual Elevation",
+      "occasion": 5,
+      "styles": [1, 5],
+      "description": "Pantalón de pinzas, camisa de popelín y suéter fino superpuesto. Los accesorios minimalistas y el calzado pulido elevan este conjunto business casual a un nuevo nivel de elegancia cotidiana.",
+      "image_url": "https://picsum.photos/id/1018/800/600",
+      "created_at": "2025-10-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 9,
+    "fields": {
+      "title": "Rebel With Style",
+      "occasion": 6,
+      "styles": [4, 6],
+      "description": "Vestido slip dress sobre camiseta oversize, botas militares y accesorios metálicos. Una reinterpretación moderna del estilo grunge que mantiene un toque de sofisticación urbana.",
+      "image_url": "https://picsum.photos/id/1019/800/600",
+      "created_at": "2025-08-22T18:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 10,
+    "fields": {
+      "title": "Zen Summer",
+      "occasion": 3,
+      "styles": [5, 7],
+      "description": "Mono largo en lino natural con corte minimalista y sandalias planas artesanales. La simplicidad elegante se une a la comodidad veraniega en este conjunto perfecto para días casuales.",
+      "image_url": "https://picsum.photos/id/1020/800/600",
+      "created_at": "2025-07-05T10:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 11,
+    "fields": {
+      "title": "Classic Prep Twist",
+      "occasion": 8,
+      "styles": [8, 1],
+      "description": "Vestido cóctel con estampado de cuadros príncipe de Gales, blazer cropped y mocasines modernos. Una interpretación contemporánea del estilo preppy para eventos semi-formales.",
+      "image_url": "https://picsum.photos/id/1021/800/600",
+      "created_at": "2025-10-18T17:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 12,
+    "fields": {
+      "title": "Festival Spirit",
+      "occasion": 6,
+      "styles": [7, 4],
+      "description": "Vestido maxi con estampados étnicos, botas de ante y accesorios vintage. La fusión perfecta entre el espíritu libre boho y el edge grunge para festivales y eventos al aire libre.",
+      "image_url": "https://picsum.photos/id/1022/800/600",
+      "created_at": "2025-10-20T16:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 13,
+    "fields": {
+      "title": "Sunrise Brunch",
+      "occasion": 7,
+      "styles": [2, 5],
+      "description": "Falda midi plisada en tono pastel con top de punto fino y sandalias delicadas. Un conjunto romántico con toques minimalistas, ideal para brunch con amigas.",
+      "image_url": "https://picsum.photos/id/1023/800/600",
+      "created_at": "2025-10-22T09:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 14,
+    "fields": {
+      "title": "Cocktail Hour",
+      "occasion": 8,
+      "styles": [6, 1],
+      "description": "Vestido midi asimétrico en satén con detalles drapeados y sandalias minimalistas. Un look que combina elegancia clásica con un twist contemporáneo para eventos de cóctel.",
+      "image_url": "https://picsum.photos/id/1024/800/600",
+      "created_at": "2025-10-25T18:30:00Z"
+    }
+  }
+]
