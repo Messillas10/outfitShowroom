@@ -30,6 +30,16 @@ class Outfit(models.Model):
     styles = models.ManyToManyField(Style, related_name="outfits")
     description = models.TextField(blank=True)
     image_url = models.URLField(blank=True)
+    image = models.ImageField(upload_to='outfits/', blank=True, null=True)
+    GENERO_MUJER = 'mujer'
+    GENERO_HOMBRE = 'hombre'
+    GENERO_AMBIGUO = 'ambiguo'
+    GENERO_CHOICES = (
+        (GENERO_MUJER, 'Mujer'),
+        (GENERO_HOMBRE, 'Hombre'),
+        (GENERO_AMBIGUO, 'Ambiguo'),
+    )
+    genero = models.CharField(max_length=10, choices=GENERO_CHOICES, default=GENERO_AMBIGUO)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

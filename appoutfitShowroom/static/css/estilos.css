@@ -450,6 +450,26 @@ select{ appearance: none; -webkit-appearance: none; background-image: url("data:
     border-color: var(--accent);
 }
 
+/* Color específico para badges de género */
+.badge.badge-genero-mujer{
+    background: linear-gradient(180deg,#ff6b8a,#ff8aa3);
+    color: #fff;
+    border-color: transparent;
+}
+.badge.badge-genero-hombre{
+    background: linear-gradient(180deg,#4aa3ff,#6ec0ff);
+    color: #fff;
+    border-color: transparent;
+}
+.badge.badge-genero-ambiguo{
+    background: linear-gradient(180deg,#9b7dff,#7c7caa);
+    color: #fff;
+    border-color: transparent;
+}
+.badge.badge-genero-mujer:hover, .badge.badge-genero-hombre:hover, .badge.badge-genero-ambiguo:hover{
+    opacity: 0.95;
+}
+
 .occasion-tag {
     display: inline-block;
     background: rgba(43, 89, 195, 0.9);

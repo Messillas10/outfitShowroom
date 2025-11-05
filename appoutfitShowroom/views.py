@@ -21,9 +21,11 @@ def outfit_list(request):
 
     style_slug = request.GET.get("style")
     occasion_slug = request.GET.get("occasion")
+    genero = request.GET.get("genero")
 
     selected_style = None
     selected_occasion = None
+    selected_genero = None
 
     if style_slug:
         selected_style = Style.objects.filter(slug=style_slug).first()
@@ -35,16 +37,26 @@ def outfit_list(request):
         if selected_occasion:
             outfits = outfits.filter(occasion=selected_occasion)
 
+    # filtro por genero (espera una de las claves en Outfit.GENERO_CHOICES)
+    if genero:
+        valid_generos = [g[0] for g in Outfit.GENERO_CHOICES]
+        if genero in valid_generos:
+            selected_genero = genero
+            outfits = outfits.filter(genero=selected_genero)
+
     # provide lists for filter UI
     styles = Style.objects.all()
     occasions = Occasion.objects.all()
+    generos = Outfit.GENERO_CHOICES
 
     return render(request, "showroom/outfit_list.html", {
         "outfits": outfits,
         "styles": styles,
         "occasions": occasions,
+        "generos": generos,
         "selected_style": selected_style,
         "selected_occasion": selected_occasion,
+        "selected_genero": selected_genero,
     })
 
 def occasion_list(request):

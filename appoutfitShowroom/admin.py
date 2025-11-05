@@ -15,7 +15,7 @@ class StyleAdmin(admin.ModelAdmin):
 
 @admin.register(Outfit)
 class OutfitAdmin(admin.ModelAdmin):
-    list_display = ("title", "occasion", "created_at")
-    list_filter = ("occasion", "styles")
+    list_display = ("title", "occasion", "genero", "created_at")
+    list_filter = ("occasion", "styles", "genero")
     search_fields = ("title", "description")
 

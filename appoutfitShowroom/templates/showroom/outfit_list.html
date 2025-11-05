@@ -8,7 +8,7 @@
     <div class="mind-card">
         <div class="mind-header">
             <h3 class="mind-title">¿Tienes algo en mente?</h3>
-            <p class="mind-lead">Cuéntanos el estilo o la ocasión y te mostraremos sugerencias visuales. Usa los controles para filtrar por estilo u ocasión.</p>
+            <p class="mind-lead">Cuéntanos el estilo o la ocasión y te mostraremos sugerencias visuales. Usa los controles para filtrar por estilo, ocasión o género.</p>
         </div>
             <div class="mind-body">
                 <!-- Filtro simple restaurado: selects por estilo y ocasión -->
@@ -33,6 +33,16 @@
                         </select>
                     </div>
 
+                    <div class="filters-group">
+                        <label for="id_genero">Filtrar por género</label>
+                        <select name="genero" id="id_genero">
+                            <option value="">— Todos —</option>
+                            {% for g_value, g_label in generos %}
+                            <option value="{{ g_value }}" {% if selected_genero and selected_genero == g_value %}selected{% endif %}>{{ g_label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
                     <div class="filters-actions">
                         <button type="button" class="btn btn-link" data-url="{% url 'showroom:outfit_list' %}" onclick="window.location.href=this.dataset.url">Limpiar</button>
                     </div>
@@ -45,7 +55,11 @@
     <div class="grid">
     {% for o in outfits %}
     <article class="card">
-        {% if o.image_url %}
+        {% if o.image %}
+        <a href="{% url 'showroom:outfit_detail' o.pk %}" class="card-image">
+            <img src="{{ o.image.url }}" alt="{{ o.title }}">
+        </a>
+        {% elif o.image_url %}
         <a href="{% url 'showroom:outfit_detail' o.pk %}" class="card-image">
             <img src="{{ o.image_url }}" alt="{{ o.title }}">
         </a>
@@ -55,14 +69,16 @@
             <p class="meta">
                 Para: <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}">{{ o.occasion.name }}</a>
             </p>
+            
             <p class="card-description">{{ o.description|truncatewords:20 }}</p>
-            {% if o.styles.all %}
-            <div class="badges">
+            <div class="badges" aria-label="Metadatos">
+                <a class="badge badge-genero-{{ o.genero }}" aria-label="Filtrar por género: {{ o.get_genero_display }}" href="{% url 'showroom:outfit_list' %}?genero={{ o.genero }}">{{ o.get_genero_display }}</a>
+                {% if o.styles.all %}
                 {% for s in o.styles.all %}
-                <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
+                <a class="badge" href="{% url 'showroom:outfit_list' %}?style={{ s.slug }}">{{ s.name }}</a>
                 {% endfor %}
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </article>
     {% empty %}
@@ -74,10 +90,12 @@
 <script>
 // Auto-submit on select change for faster UX (simple filter)
 document.addEventListener('DOMContentLoaded', function(){
-  var styleSel = document.getElementById('id_style');
-  var occSel = document.getElementById('id_occasion');
-  if(styleSel){ styleSel.addEventListener('change', function(){ this.form.submit(); }); }
-  if(occSel){ occSel.addEventListener('change', function(){ this.form.submit(); }); }
+    var styleSel = document.getElementById('id_style');
+    var occSel = document.getElementById('id_occasion');
+    var generoSel = document.getElementById('id_genero');
+    if(styleSel){ styleSel.addEventListener('change', function(){ this.form.submit(); }); }
+    if(occSel){ occSel.addEventListener('change', function(){ this.form.submit(); }); }
+    if(generoSel){ generoSel.addEventListener('change', function(){ this.form.submit(); }); }
 });
 </script>
 {% endblock %}

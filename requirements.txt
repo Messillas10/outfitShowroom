@@ -1,0 +1,9 @@
+#Requerimientos para desarrollo local
+# Ajusta las versiones si tu entorno requiere una versión específica.
+
+Django>=3.2,<5.0
+Pillow>=9.0.0
+
+# Opcional (descomentar si es necesario):
+# psycopg2-binary>=2.9   # Si usas PostgreSQL
+# whitenoise>=6.0        # Si quieres un servicio simple de archivos estáticos en producción

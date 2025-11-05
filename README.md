@@ -11,33 +11,33 @@ Instrucciones rápidas (PowerShell / Windows)
 1. Activar virtualenv (si existe):
 
 ```powershell
-C:/Users/c.llata/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/Activate.ps1
+C:/Users/"usuario"/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/Activate.ps1
 ```
 
 2. Instalar dependencias (si `requirements.txt` existe), o instalar Django si es necesario:
 
 ```powershell
-C:/Users/c.llata/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe -m pip install -r requirements.txt
+C:/Users/"usuario"/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe -m pip install -r requirements.txt
 # o
-C:/Users/c.llata/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe -m pip install Django
+C:/Users/"usuario"/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe -m pip install Django
 ```
 
 3. Aplicar migraciones:
 
 ```powershell
-C:/Users/c.llata/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py migrate
+C:/Users/"usuario"/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py migrate
 ```
 
 4. Cargar datos de ejemplo (opcional):
 
 ```powershell
-C:/Users/c.llata/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py loaddata fixtures/initial_data.json
+C:/Users/"usuario"/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py loaddata fixtures/initial_data.json
 ```
 
 5. Ejecutar servidor de desarrollo:
 
 ```powershell
-C:/Users/c.llata/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py runserver
+C:/Users/"usuario"/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py runserver
 ```
 
 6. Abrir en el navegador:
@@ -49,11 +49,10 @@ Tests
 Para ejecutar tests:
 
 ```powershell
-C:/Users/c.llata/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py test
+C:/Users/"usuario"/Projects/outfitShowroom/outfitShowroom/.venv/Scripts/python.exe manage.py test
 ```
 
 Notas
-- Las imágenes en los fixtures usan `image_url` apuntando a `picsum.photos`. Si prefieres subir imágenes en local, cambia `Outfit.image_url` a `ImageField` y configura `MEDIA_ROOT`/`MEDIA_URL`.
 - Ya hay plantillas en `appoutfitShowroom/templates/showroom` y estilos en `static/css/estilos.css`.
 
 Siguientes pasos sugeridos

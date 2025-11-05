@@ -2,7 +2,11 @@
 {% block title %}{{ outfit.title }}{% endblock %}
 {% block content %}
 <h2>{{ outfit.title }}</h2>
-{% if outfit.image_url %}
+{% if outfit.image %}
+    <figure class="figure">
+    <img src="{{ outfit.image.url }}" alt="{{ outfit.title }}">
+    </figure>
+{% elif outfit.image_url %}
     <figure class="figure">
     <img src="{{ outfit.image_url }}" alt="{{ outfit.title }}">
     </figure>
@@ -15,11 +19,12 @@
     <a href="{% url 'showroom:occasion_detail' outfit.occasion.slug %}">{{ outfit.occasion.name }}</a>
 </p>
 
-{% if outfit.styles.all %}
-    <div class="badges" aria-label="Estilos">
+<div class="badges" aria-label="Metadatos">
+    <a class="badge badge-genero-{{ outfit.genero }}" aria-label="Filtrar por género: {{ outfit.get_genero_display }}" href="{% url 'showroom:outfit_list' %}?genero={{ outfit.genero }}">{{ outfit.get_genero_display }}</a>
+    {% if outfit.styles.all %}
     {% for s in outfit.styles.all %}
-        <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
+        <a class="badge" href="{% url 'showroom:outfit_list' %}?style={{ s.slug }}">{{ s.name }}</a>
     {% endfor %}
-    </div>
-{% endif %}
+    {% endif %}
+</div>
 {% endblock %}
