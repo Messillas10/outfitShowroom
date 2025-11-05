@@ -4,7 +4,45 @@
 <h2>Todos los outfits</h2>
 <p class="section-lead">Explora nuestra colección de looks cuidadosamente seleccionados para cada ocasión.</p>
 
-<div class="grid">
+<section class="mind-section">
+    <div class="mind-card">
+        <div class="mind-header">
+            <h3 class="mind-title">¿Tienes algo en mente?</h3>
+            <p class="mind-lead">Cuéntanos el estilo o la ocasión y te mostraremos sugerencias visuales. Usa los controles para filtrar por estilo u ocasión.</p>
+        </div>
+            <div class="mind-body">
+                <!-- Filtro simple restaurado: selects por estilo y ocasión -->
+                <form method="get" class="filters" id="simple-filter" aria-label="Filtros de outfits">
+                    <div class="filters-group">
+                        <label for="id_style">Filtrar por estilo</label>
+                        <select name="style" id="id_style">
+                            <option value="">— Todos —</option>
+                            {% for s in styles %}
+                            <option value="{{ s.slug }}" {% if selected_style and s.pk == selected_style.pk %}selected{% endif %}>{{ s.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filters-group">
+                        <label for="id_occasion">Filtrar por ocasión</label>
+                        <select name="occasion" id="id_occasion">
+                            <option value="">— Todas —</option>
+                            {% for oc in occasions %}
+                            <option value="{{ oc.slug }}" {% if selected_occasion and oc.pk == selected_occasion.pk %}selected{% endif %}>{{ oc.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filters-actions">
+                        <button type="button" class="btn btn-link" data-url="{% url 'showroom:outfit_list' %}" onclick="window.location.href=this.dataset.url">Limpiar</button>
+                    </div>
+                </form>
+                
+            </div>
+    </div>
+</section>
+
+    <div class="grid">
     {% for o in outfits %}
     <article class="card">
         {% if o.image_url %}
@@ -31,4 +69,15 @@
     <p class="empty-message">No hay outfits disponibles.</p>
     {% endfor %}
 </div>
+{% endblock %}
+{% block extra_js %}
+<script>
+// Auto-submit on select change for faster UX (simple filter)
+document.addEventListener('DOMContentLoaded', function(){
+  var styleSel = document.getElementById('id_style');
+  var occSel = document.getElementById('id_occasion');
+  if(styleSel){ styleSel.addEventListener('change', function(){ this.form.submit(); }); }
+  if(occSel){ occSel.addEventListener('change', function(){ this.form.submit(); }); }
+});
+</script>
 {% endblock %}

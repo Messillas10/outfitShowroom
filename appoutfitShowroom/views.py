@@ -16,8 +16,36 @@ def index(request):
 
 # LISTAS
 def outfit_list(request):
+    # Available filters via query params: ?style=<slug>&occasion=<slug>
     outfits = Outfit.objects.select_related("occasion").prefetch_related("styles").all()
-    return render(request, "showroom/outfit_list.html", {"outfits": outfits})
+
+    style_slug = request.GET.get("style")
+    occasion_slug = request.GET.get("occasion")
+
+    selected_style = None
+    selected_occasion = None
+
+    if style_slug:
+        selected_style = Style.objects.filter(slug=style_slug).first()
+        if selected_style:
+            outfits = outfits.filter(styles=selected_style)
+
+    if occasion_slug:
+        selected_occasion = Occasion.objects.filter(slug=occasion_slug).first()
+        if selected_occasion:
+            outfits = outfits.filter(occasion=selected_occasion)
+
+    # provide lists for filter UI
+    styles = Style.objects.all()
+    occasions = Occasion.objects.all()
+
+    return render(request, "showroom/outfit_list.html", {
+        "outfits": outfits,
+        "styles": styles,
+        "occasions": occasions,
+        "selected_style": selected_style,
+        "selected_occasion": selected_occasion,
+    })
 
 def occasion_list(request):
     occasions = Occasion.objects.all()
