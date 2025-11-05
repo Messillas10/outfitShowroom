@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    # Redirect root URL to the showroom app
+    path('', RedirectView.as_view(url='/showroom/', permanent=False)),
     path('showroom/', include('appoutfitShowroom.urls', namespace='showroom')),
     path('admin/', admin.site.urls),
 ]
