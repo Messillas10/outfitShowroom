@@ -1,0 +1,53 @@
+{% extends "showroom/base.html" %}
+
+{% block title %}Envíanos tu outfit ideal{% endblock %}
+
+{% block content %}
+    <h2>Envíanos tu outfit ideal</h2>
+    <p class="section-lead">Cuéntanos tu idea: ocasión, estilos y, si quieres, una imagen de referencia.</p>
+
+    {% if messages %}
+    {% for message in messages %}
+        <p class="mensaje-exito">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="form-outfit panel">
+        {% csrf_token %}
+    <div style="display:grid;gap:12px;">
+        {{ form.non_field_errors }}
+        <div>
+        <label for="{{ form.nombre.id_for_label }}"><strong>Nombre</strong></label>
+        {{ form.nombre }}
+        {{ form.nombre.errors }}
+        </div>
+        <div>
+        <label for="{{ form.email.id_for_label }}"><strong>Email</strong></label>
+        {{ form.email }}
+        {{ form.email.errors }}
+        </div>
+        <div>
+        <label for="{{ form.ocasion.id_for_label }}"><strong>Ocasión</strong></label>
+        {{ form.ocasion }}
+        {{ form.ocasion.errors }}
+        </div>
+        <div>
+        <label for="{{ form.estilos.id_for_label }}"><strong>Estilos</strong> <span class="meta">(ej. Minimalista, Sporty)</span></label>
+        {{ form.estilos }}
+        {{ form.estilos.errors }}
+        <p class="meta">Mantén pulsado Ctrl (Windows/Linux) o Cmd (Mac) para seleccionar varios.</p>
+        </div>
+        <div>
+        <label for="{{ form.descripcion.id_for_label }}"><strong>Descripción</strong></label>
+        {{ form.descripcion }}
+        {{ form.descripcion.errors }}
+        </div>
+        <div>
+        <label for="{{ form.imagen.id_for_label }}"><strong>Imagen (opcional)</strong></label>
+        {{ form.imagen }}
+        {{ form.imagen.errors }}
+        </div>
+        <button type="submit" class="badge" style="align-self:start; cursor:pointer;">Enviar outfit</button>
+    </div>
+    </form>
+{% endblock %}

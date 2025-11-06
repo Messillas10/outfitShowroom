@@ -88,3 +88,22 @@ def style_detail(request, slug):
     return render(request, "showroom/style_detail.html", {
         "style": style, "outfits": outfits
     })
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import OutfitIdeaForm
+
+def enviar_outfit_ideal(request):
+    if request.method == 'POST':
+        form = OutfitIdeaForm(request.POST, request.FILES)
+        if form.is_valid():
+            idea = form.save(commit=False)
+            idea.save()
+            form.save_m2m()  # necesario si 'estilos' es ManyToMany
+            messages.success(request, '¡Gracias! Hemos recibido tu idea de outfit.')
+            return redirect('showroom:enviar_outfit_ideal')  # ✅ con namespace
+    else:
+        form = OutfitIdeaForm()
+
+    return render(request, 'showroom/enviar_outfit_ideal.html', {'form': form})
+

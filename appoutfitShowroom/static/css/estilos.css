@@ -545,3 +545,98 @@ body {
     border-top: 1px solid var(--border);
     background: #fafafa;
 }
+
+/* ======================
+    FORMULARIO "ENVÍA TU OUTFIT"
+   ====================== */
+.form-outfit {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem 2.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-outfit:hover {
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+.form-outfit h2 {
+    text-align: center;
+    color: #222;
+    margin-bottom: 1.2rem;
+}
+
+.form-outfit p.section-lead {
+    text-align: center;
+    color: #555;
+    margin-bottom: 1.8rem;
+}
+
+.form-outfit label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.form-outfit input[type="text"],
+.form-outfit input[type="email"],
+.form-outfit input[type="file"],
+.form-outfit select,
+.form-outfit textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #fafafa;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-outfit input:focus,
+.form-outfit textarea:focus,
+.form-outfit select:focus {
+    border-color: #e6b800;
+    background-color: #fff;
+    outline: none;
+}
+
+.form-outfit textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-outfit button[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: #f2b900;
+    border: none;
+    color: #222;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.form-outfit button[type="submit"]:hover {
+    background-color: #ffd43b;
+    transform: scale(1.02);
+}
+
+/* Mensaje de éxito */
+.mensaje-exito {
+    background-color: #e6ffe6;
+    color: #2e7d32;
+    padding: 0.8rem 1rem;
+    border: 1px solid #b2dfdb;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+

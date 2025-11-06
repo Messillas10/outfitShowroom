@@ -47,4 +47,32 @@ class Outfit(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+class OutfitIdea(models.Model):
+    OCASIONES = [
+        ('Casual', 'Casual'),
+        ('Formal', 'Formal'),
+        ('Playa', 'Día de playa'),
+        ('Trabajo', 'Trabajo'),
+        ('Noche', 'De noche'),
+    ]
+
+    ESTILOS = [
+        ('Minimalista', 'Minimalista'),
+        ('Sporty', 'Sporty'),
+        ('Urban-Chic', 'Urban-Chic'),
+        ('Vintage', 'Vintage'),
+    ]
+
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField()
+    descripcion = models.TextField()
+    ocasion = models.CharField(max_length=20, choices=OCASIONES)
+    estilos = models.ManyToManyField('Style', blank=True)
+    imagen = models.ImageField(upload_to='outfit_ideas/', blank=True, null=True)
+    fecha_envio = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nombre} - {self.ocasion}"
 

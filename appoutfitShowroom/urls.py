@@ -11,4 +11,5 @@ urlpatterns = [
     path("occasions/<slug:slug>/", views.occasion_detail, name="occasion_detail"),
     path("styles/", views.style_list, name="style_list"),
     path("styles/<slug:slug>/", views.style_detail, name="style_detail"),
+    path('enviar-idea/', views.enviar_outfit_ideal, name='enviar_outfit_ideal'),
 ]
