@@ -19,7 +19,7 @@
     <a href="{% url 'showroom:occasion_detail' outfit.occasion.slug %}">{{ outfit.occasion.name }}</a>
 </p>
 
-<div class="badges" aria-label="Metadatos">
+<div class="badges">
     <a class="badge badge-genero-{{ outfit.genero }}" aria-label="Filtrar por género: {{ outfit.get_genero_display }}" href="{% url 'showroom:outfit_list' %}?genero={{ outfit.genero }}">{{ outfit.get_genero_display }}</a>
     {% if outfit.styles.all %}
     {% for s in outfit.styles.all %}

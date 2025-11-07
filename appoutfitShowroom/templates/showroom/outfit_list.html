@@ -71,8 +71,8 @@
             </p>
             
             <p class="card-description">{{ o.description|truncatewords:20 }}</p>
-            <div class="badges" aria-label="Metadatos">
-                <a class="badge badge-genero-{{ o.genero }}" aria-label="Filtrar por género: {{ o.get_genero_display }}" href="{% url 'showroom:outfit_list' %}?genero={{ o.genero }}">{{ o.get_genero_display }}</a>
+            <div class="badges">
+                <a class="badge badge-genero-{{ o.genero }}" href="{% url 'showroom:outfit_list' %}?genero={{ o.genero }}">{{ o.get_genero_display }}</a>
                 {% if o.styles.all %}
                 {% for s in o.styles.all %}
                 <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
