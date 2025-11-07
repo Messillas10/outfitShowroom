@@ -11,7 +11,6 @@
             <p class="mind-lead">Cuéntanos el estilo o la ocasión y te mostraremos sugerencias visuales. Usa los controles para filtrar por estilo, ocasión o género.</p>
         </div>
             <div class="mind-body">
-                <!-- Filtro simple restaurado: selects por estilo y ocasión -->
                 <form method="get" class="filters" id="simple-filter" aria-label="Filtros de outfits">
                     <div class="filters-group">
                         <label for="id_style">Filtrar por estilo</label>
@@ -88,7 +87,6 @@
 {% endblock %}
 {% block extra_js %}
 <script>
-// Auto-submit on select change for faster UX (simple filter)
 document.addEventListener('DOMContentLoaded', function(){
     var styleSel = document.getElementById('id_style');
     var occSel = document.getElementById('id_occasion');

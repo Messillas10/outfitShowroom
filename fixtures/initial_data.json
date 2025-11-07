@@ -313,4 +313,125 @@
       "created_at": "2025-10-25T18:30:00Z"
     }
   }
+  ,
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 15,
+    "fields": {
+      "title": "Evening Glam",
+      "occasion": 8,
+      "styles": [1, 6],
+      "description": "Vestido de cóctel elegante con detalles brillantes y tacones finos. Perfecto para eventos nocturnos y cócteles sofisticados.",
+      "image_url": "https://picsum.photos/id/1025/800/600",
+      "created_at": "2025-10-26T19:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 16,
+    "fields": {
+      "title": "Coastal Breeze",
+      "occasion": 3,
+      "styles": [3, 7],
+      "description": "Fresco conjunto veraniego con tejidos ligeros y colores marinos, ideal para paseos en la playa o almuerzos al aire libre.",
+      "image_url": "https://picsum.photos/id/1026/800/600",
+      "created_at": "2025-09-18T11:30:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 17,
+    "fields": {
+      "title": "Street Smart",
+      "occasion": 6,
+      "styles": [6, 4],
+      "description": "Look urbano con chaqueta estructurada, jeans y botas para una noche de amigos o un plan informal con actitud.",
+      "image_url": "https://picsum.photos/id/1027/800/600",
+      "created_at": "2025-10-08T21:10:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 18,
+    "fields": {
+      "title": "Minimal Day",
+      "occasion": 5,
+      "styles": [5],
+      "description": "Conjunto minimalista de tonos neutros pensado para el día a día en la oficina o salidas informales con un aire elegante y sencillo.",
+      "image_url": "https://picsum.photos/id/1028/800/600",
+      "created_at": "2025-10-03T09:45:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 19,
+    "fields": {
+      "title": "Boho Festival",
+      "occasion": 6,
+      "styles": [7, 4],
+      "description": "Vestido largo con estampados étnicos y accesorios artesanales, pensado para festivales y encuentros al aire libre.",
+      "image_url": "https://picsum.photos/id/1029/800/600",
+      "created_at": "2025-09-12T17:20:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 20,
+    "fields": {
+      "title": "Casual Chic",
+      "occasion": 7,
+      "styles": [2, 5],
+      "description": "Look relajado y chic para un brunch con amigas: falda midi, top de punto y sandalias delicadas.",
+      "image_url": "https://picsum.photos/id/1030/800/600",
+      "created_at": "2025-10-02T10:05:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 21,
+    "fields": {
+      "title": "Workday Polished",
+      "occasion": 5,
+      "styles": [1, 8],
+      "description": "Traje business casual con pantalón de pinzas y blazer crop para un look moderno y profesional en la oficina.",
+      "image_url": "https://picsum.photos/id/1031/800/600",
+      "created_at": "2025-09-25T08:00:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 22,
+    "fields": {
+      "title": "Elegant Black Tie",
+      "occasion": 1,
+      "styles": [1, 5],
+      "description": "Vestido largo de gala en negro con detalles sofisticados, ideal para bodas y eventos formales de etiqueta.",
+      "image_url": "https://picsum.photos/id/1032/800/600",
+      "created_at": "2025-10-01T20:45:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 23,
+    "fields": {
+      "title": "Weekend Layers",
+      "occasion": 6,
+      "styles": [6, 5],
+      "description": "Capas ligeras y texturas para un look urbano de fin de semana que permite versatilidad y estilo.",
+      "image_url": "https://picsum.photos/id/1033/800/600",
+      "created_at": "2025-10-11T15:30:00Z"
+    }
+  },
+  {
+    "model": "appoutfitShowroom.outfit",
+    "pk": 24,
+    "fields": {
+      "title": "Preppy Evening",
+      "occasion": 8,
+      "styles": [8, 1],
+      "description": "Vestido cóctel con toques preppy y accesorios pulidos para un evento semi-formal con aire juvenil.",
+      "image_url": "https://picsum.photos/id/1034/800/600",
+      "created_at": "2025-10-19T18:00:00Z"
+    }
+  }
 ]

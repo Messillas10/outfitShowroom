@@ -12,7 +12,6 @@
             <img src="{{ o.image.url }}" alt="Outfit para {{ o.name }}">
         </a>
         {% elif o.outfits.first.image_url %}
-        <!-- fallback to first outfit image if occasion has no image set -->
         <a href="{% url 'showroom:occasion_detail' o.slug %}" class="card-image">
             <img src="{{ o.outfits.first.image_url }}" alt="Outfit para {{ o.name }}">
         </a>
