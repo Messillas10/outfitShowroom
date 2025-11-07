@@ -3,13 +3,13 @@ from .models import Occasion, Style, Outfit, OutfitIdea
 
 @admin.register(Occasion)
 class OccasionAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("name", "image")
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ("name",)
 
 @admin.register(Style)
 class StyleAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("name", "image")
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ("name",)
 

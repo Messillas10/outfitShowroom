@@ -4,10 +4,15 @@
 <h2>Estilos</h2>
 <p class="section-lead">Explora diferentes estilos y encuentra el que mejor te representa.</p>
 
-<div class="grid">
+<div class="grid grid--two-cols">
     {% for s in styles %}
     <article class="card">
-        {% if s.outfits.first.image_url %}
+        {% if s.image %}
+        <a href="{% url 'showroom:style_detail' s.slug %}" class="card-image">
+            <img src="{{ s.image.url }}" alt="Ejemplo de estilo {{ s.name }}">
+        </a>
+        {% elif s.outfits.first.image_url %}
+        <!-- fallback to first outfit image if style has no image set -->
         <a href="{% url 'showroom:style_detail' s.slug %}" class="card-image">
             <img src="{{ s.outfits.first.image_url }}" alt="Ejemplo de estilo {{ s.name }}">
         </a>

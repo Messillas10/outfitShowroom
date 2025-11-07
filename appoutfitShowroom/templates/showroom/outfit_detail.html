@@ -23,7 +23,7 @@
     <a class="badge badge-genero-{{ outfit.genero }}" aria-label="Filtrar por género: {{ outfit.get_genero_display }}" href="{% url 'showroom:outfit_list' %}?genero={{ outfit.genero }}">{{ outfit.get_genero_display }}</a>
     {% if outfit.styles.all %}
     {% for s in outfit.styles.all %}
-        <a class="badge" href="{% url 'showroom:outfit_list' %}?style={{ s.slug }}">{{ s.name }}</a>
+        <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
     {% endfor %}
     {% endif %}
 </div>

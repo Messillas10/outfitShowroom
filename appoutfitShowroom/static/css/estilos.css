@@ -329,6 +329,18 @@ select{ appearance: none; -webkit-appearance: none; background-image: url("data:
     margin-top: 4rem;
 }
 
+/* Page-specific modifier: force 2 columns for listings like styles */
+.grid.grid--two-cols{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Make it responsive: single column on small screens */
+@media (max-width:720px){
+    .grid.grid--two-cols{
+        grid-template-columns: 1fr;
+    }
+}
+
 .card{
     border:1px solid var(--border);
     border-radius: var(--radius);
@@ -386,7 +398,40 @@ select{ appearance: none; -webkit-appearance: none; background-image: url("data:
 .browse-all {
     margin: 4rem 0;
     text-align: center;
+
 }
+
+/* --------- Detail hero (occasion/style) --------- */
+.detail-hero{
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg,#fff,#fbfbff);
+    border:1px solid var(--border);
+    width: 100%;
+    box-sizing: border-box; /* ensure padding/border stay inside */
+}
+.detail-hero .hero-image{
+    width:100%;
+    overflow:hidden;
+}
+.detail-hero .hero-image img{
+    width:100%;
+    max-width:100%;
+    height:clamp(220px, 36vh, 480px); /* responsive height */
+    object-fit:cover; /* crop while filling the area */
+    display:block;
+    margin:0; /* prevent stray margins pushing layout */
+}
+.detail-hero .hero-body{
+    padding:20px;
+}
+
+@media (max-width:720px){
+    .detail-hero .hero-image img{ height:clamp(160px, 28vh, 300px); }
+    .detail-hero .hero-body{ padding:14px; }
+}
+
 
 .category-grid {
     display: grid;

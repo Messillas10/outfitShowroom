@@ -4,6 +4,7 @@ class Occasion(models.Model):
     name = models.CharField(max_length=60, unique=True)
     slug = models.SlugField(max_length=70, unique=True)
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='occasions/', blank=True, null=True)
 
     class Meta:
         ordering = ["name"]
@@ -16,6 +17,7 @@ class Style(models.Model):
     name = models.CharField(max_length=40, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='styles/', blank=True, null=True)
 
     class Meta:
         ordering = ["name"]

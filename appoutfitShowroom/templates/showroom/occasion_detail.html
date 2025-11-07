@@ -1,15 +1,55 @@
 {% extends "showroom/base.html" %}
 {% block title %}{{ occasion.name }}{% endblock %}
 {% block content %}
-<h2>Ocasión: {{ occasion.name }}</h2>
-{% if occasion.description %}<p class="lead">{{ occasion.description }}</p>{% endif %}
+<header class="detail-hero">
+    {% if occasion.image %}
+    <div class="hero-image">
+        <img src="{{ occasion.image.url }}" alt="Imagen de {{ occasion.name }}">
+    </div>
+    {% elif occasion.outfits.first.image_url %}
+    <div class="hero-image">
+        <img src="{{ occasion.outfits.first.image_url }}" alt="Imagen de {{ occasion.name }} (ejemplo)">
+    </div>
+    {% endif %}
+    <div class="hero-body">
+        <h2>Ocasión: {{ occasion.name }}</h2>
+        {% if occasion.description %}
+        <p class="lead">{{ occasion.description }}</p>
+        {% endif %}
+    </div>
+</header>
+
 <hr class="sep">
 <h3>Outfits</h3>
-<ul class="clean">
+
+<div class="grid">
     {% for o in outfits %}
-    <li><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></li>
+    <article class="card">
+        {% if o.image %}
+        <a href="{% url 'showroom:outfit_detail' o.pk %}" class="card-image">
+            <img src="{{ o.image.url }}" alt="{{ o.title }}">
+        </a>
+        {% elif o.image_url %}
+        <a href="{% url 'showroom:outfit_detail' o.pk %}" class="card-image">
+            <img src="{{ o.image_url }}" alt="{{ o.title }}">
+        </a>
+        {% endif %}
+        <div class="card-body">
+            <h3 class="card-title"><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></h3>
+            <p class="meta">Para: <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}">{{ o.occasion.name }}</a></p>
+            <p class="card-description">{{ o.description|truncatewords:20 }}</p>
+            <div class="badges" aria-label="Metadatos">
+                <a class="badge badge-genero-{{ o.genero }}" aria-label="Filtrar por género: {{ o.get_genero_display }}" href="{% url 'showroom:outfit_list' %}?genero={{ o.genero }}">{{ o.get_genero_display }}</a>
+                {% if o.styles.all %}
+                {% for s in o.styles.all %}
+                <a class="badge" href="{% url 'showroom:style_detail' s.slug %}">{{ s.name }}</a>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </article>
     {% empty %}
-    <li>No hay outfits para esta ocasión.</li>
+    <p class="empty-message">No hay outfits para esta ocasión.</p>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}
