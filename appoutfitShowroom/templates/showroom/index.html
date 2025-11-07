@@ -7,7 +7,17 @@
 <div class="featured-grid">
     {% for o in featured_outfits %}
     <article class="featured-card">
-        {% if o.image_url %}
+        {% if o.image %}
+        <div class="card-image">
+            <img src="{{ o.image.url }}" alt="{{ o.title }}">
+            <div class="card-overlay">
+                <h3 class="card-title"><a href="{% url 'showroom:outfit_detail' o.pk %}">{{ o.title }}</a></h3>
+                <p class="meta">
+                    <a href="{% url 'showroom:occasion_detail' o.occasion.slug %}" class="occasion-tag">{{ o.occasion.name }}</a>
+                </p>
+            </div>
+        </div>
+        {% elif o.image_url %}
         <div class="card-image">
             <img src="{{ o.image_url }}" alt="{{ o.title }}">
             <div class="card-overlay">
