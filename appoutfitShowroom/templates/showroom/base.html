@@ -1,32 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
 {% load static %}
+<html lang="es">
 <head>
-<meta charset="utf-8">
-<title>{% block title %}Outfit Showroom{% endblock %}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <meta charset="utf-8">
+    <title>{% block title %}Outfit Showroom{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
+
 <body>
 <div class="container">
-    <header class="site-header">
-    <h1 class="brand"><a href="{% url 'showroom:index' %}">Outfit Showroom</a></h1>
-    <nav class="nav" aria-label="Principal">
-        <a href="{% url 'showroom:outfit_list' %}">Outfits</a>
-        <a href="{% url 'showroom:occasion_list' %}">Ocasiones</a>
-        <a href="{% url 'showroom:style_list' %}">Estilos</a>
-        <a href="{% url 'showroom:enviar_outfit_ideal' %}">Envíanos tu outfit</a>
-    </nav>
+    <header class="site-header" role="banner">
+        <h1 class="brand"><a href="{% url 'showroom:index' %}">Outfit Showroom</a></h1>
+
+        <nav class="nav" aria-label="Principal">
+            <a href="{% url 'showroom:outfit_list' %}">Outfits</a>
+            <a href="{% url 'showroom:occasion_list' %}">Ocasiones</a>
+            <a href="{% url 'showroom:style_list' %}">Estilos</a>
+            <a href="{% url 'showroom:enviar_outfit_ideal' %}">Envíanos tu outfit</a>
+        </nav>
     </header>
 
-    <main class="panel">
-    {% block content %}{% endblock %}
+    <main class="panel" role="main">
+        {% block content %}{% endblock %}
     </main>
 </div>
 
 <footer class="site-footer">
     © 2025 – Proyecto Web IW (Deusto)
 </footer>
-    {% block extra_js %}{% endblock %}
+
+<!-- Toast -->
+<div id="toast" class="toast">¡Gracias por enviar tu outfit!</div>
+
+<script src="{% static 'js/funciones.js' %}"></script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

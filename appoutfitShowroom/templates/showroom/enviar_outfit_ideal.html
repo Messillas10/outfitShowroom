@@ -1,5 +1,11 @@
 {% extends "showroom/base.html" %}
 
+{% if request.GET.ok %}
+<script>
+    window.onload = () => showToast();
+</script>
+{% endif %}
+
 {% block title %}Envíanos tu outfit ideal{% endblock %}
 
 {% block content %}
@@ -14,40 +20,72 @@
 
     <form method="post" enctype="multipart/form-data" class="form-outfit panel">
         {% csrf_token %}
-    <div style="display:grid;gap:12px;">
-        {{ form.non_field_errors }}
-        <div>
-        <label for="{{ form.nombre.id_for_label }}"><strong>Nombre</strong></label>
-        {{ form.nombre }}
-        {{ form.nombre.errors }}
+        <div style="display:grid; gap:12px;">
+
+            {{ form.non_field_errors }}
+
+            <div>
+                <label for="{{ form.nombre.id_for_label }}"><strong>Nombre</strong></label>
+                {{ form.nombre }}
+                {{ form.nombre.errors }}
+            </div>
+
+            <div>
+                <label for="{{ form.email.id_for_label }}"><strong>Email</strong></label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+
+            <div>
+                <label for="{{ form.ocasion.id_for_label }}"><strong>Ocasión</strong></label>
+                {{ form.ocasion }}
+                {{ form.ocasion.errors }}
+            </div>
+
+            <div>
+                <label for="{{ form.estilos.id_for_label }}"><strong>Estilos</strong> 
+                    <span class="meta">(ej. Minimalista, Sporty)</span>
+                </label>
+                {{ form.estilos }}
+                {{ form.estilos.errors }}
+                <p class="meta">Mantén Ctrl (Windows/Linux) o Cmd (Mac) para seleccionar varios.</p>
+            </div>
+
+            <div>
+                <label for="{{ form.descripcion.id_for_label }}"><strong>Descripción</strong></label>
+                {{ form.descripcion }}
+                {{ form.descripcion.errors }}
+            </div>
+
+            <!-- CAMPO DE IMAGEN CORRECTO -->
+            <div>
+                <label for="id_imagen"><strong>Imagen (opcional)</strong></label>
+                {{ form.imagen }}
+                <img id="preview-img" src="#" alt="Previsualización"
+                    style="display:none; max-width:200px; margin-top:10px; border-radius:8px;">
+                {{ form.imagen.errors }}
+            </div>
+
+            <button type="submit" class="badge" style="align-self:start; cursor:pointer;">
+                Enviar outfit
+            </button>
+
         </div>
-        <div>
-        <label for="{{ form.email.id_for_label }}"><strong>Email</strong></label>
-        {{ form.email }}
-        {{ form.email.errors }}
-        </div>
-        <div>
-        <label for="{{ form.ocasion.id_for_label }}"><strong>Ocasión</strong></label>
-        {{ form.ocasion }}
-        {{ form.ocasion.errors }}
-        </div>
-        <div>
-        <label for="{{ form.estilos.id_for_label }}"><strong>Estilos</strong> <span class="meta">(ej. Minimalista, Sporty)</span></label>
-        {{ form.estilos }}
-        {{ form.estilos.errors }}
-        <p class="meta">Mantén pulsado Ctrl (Windows/Linux) o Cmd (Mac) para seleccionar varios.</p>
-        </div>
-        <div>
-        <label for="{{ form.descripcion.id_for_label }}"><strong>Descripción</strong></label>
-        {{ form.descripcion }}
-        {{ form.descripcion.errors }}
-        </div>
-        <div>
-        <label for="{{ form.imagen.id_for_label }}"><strong>Imagen (opcional)</strong></label>
-        {{ form.imagen }}
-        {{ form.imagen.errors }}
-        </div>
-        <button type="submit" class="badge" style="align-self:start; cursor:pointer;">Enviar outfit</button>
-    </div>
     </form>
+
+    <!-- PREVIEW JS -->
+    <script>
+    document.getElementById("id_imagen").addEventListener("change", function(event) {
+        let file = event.target.files[0];
+        let preview = document.getElementById("preview-img");
+
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        } else {
+            preview.style.display = "none";
+        }
+    });
+    </script>
+
 {% endblock %}

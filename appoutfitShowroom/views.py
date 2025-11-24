@@ -101,7 +101,7 @@ def enviar_outfit_ideal(request):
             idea.save()
             form.save_m2m()  # necesario si 'estilos' es ManyToMany
             messages.success(request, '¡Gracias! Hemos recibido tu idea de outfit.')
-            return redirect('showroom:enviar_outfit_ideal')  # ✅ con namespace
+            return redirect('/showroom/enviar-idea/?ok=1')
     else:
         form = OutfitIdeaForm()
 
