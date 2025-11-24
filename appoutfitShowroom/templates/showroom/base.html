@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <title>{% block title %}Outfit Showroom{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -13,7 +15,6 @@
 <div class="container">
     <header class="site-header" role="banner">
         <h1 class="brand"><a href="{% url 'showroom:index' %}">Outfit Showroom</a></h1>
-
         <nav class="nav" aria-label="Principal">
             <a href="{% url 'showroom:outfit_list' %}">Outfits</a>
             <a href="{% url 'showroom:occasion_list' %}">Ocasiones</a>
@@ -31,10 +32,58 @@
     © 2025 – Proyecto Web IW (Deusto)
 </footer>
 
-<!-- Toast -->
-<div id="toast" class="toast">¡Gracias por enviar tu outfit!</div>
 
-<script src="{% static 'js/funciones.js' %}"></script>
-{% block extra_js %}{% endblock %}
+<!-- ============================================
+     JS GLOBAL PARA INTERACCIÓN DEL FORMULARIO
+     ============================================ -->
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    console.log("JS de base.html cargado correctamente");
+
+    const form = document.querySelector("form.form-outfit");
+    const submitBtn = document.getElementById("submit-btn");
+
+    if (form && submitBtn) {
+
+        form.addEventListener("submit", (e) => {
+
+            // 🚫 Si el botón está deshabilitado → NO enviar
+            if (submitBtn.disabled || submitBtn.classList.contains("btn-disabled-danger")) {
+                console.log("Bloqueado: botón deshabilitado");
+                e.preventDefault();
+                return;
+            }
+
+            // ✔ Si es válido → activar animación
+            console.log("Formulario válido: activando loader");
+            submitBtn.classList.add("btn-disabled");
+            submitBtn.innerHTML = `Enviando... <span class="spinner"></span>`;
+        });
+    }
+
+    /* --------------------------------------------------------------------
+       PREVIEW GLOBAL DE IMAGEN (solo se activa en páginas que la tengan)
+       -------------------------------------------------------------------- */
+    const inputImg = document.querySelector("#id_imagen");
+    const preview = document.querySelector("#preview-img");
+
+    if (inputImg && preview) {
+        inputImg.addEventListener("change", () => {
+            const file = inputImg.files[0];
+            if (!file) {
+                preview.style.display = "none";
+                return;
+            }
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        });
+    }
+
+});
+</script>
+{% endblock %}
+
 </body>
 </html>

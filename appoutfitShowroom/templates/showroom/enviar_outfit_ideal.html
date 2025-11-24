@@ -1,91 +1,142 @@
 {% extends "showroom/base.html" %}
 
-{% if request.GET.ok %}
-<script>
-    window.onload = () => showToast();
-</script>
-{% endif %}
-
 {% block title %}Envíanos tu outfit ideal{% endblock %}
 
 {% block content %}
-    <h2>Envíanos tu outfit ideal</h2>
-    <p class="section-lead">Cuéntanos tu idea: ocasión, estilos y, si quieres, una imagen de referencia.</p>
+<h2>Envíanos tu outfit ideal</h2>
+<p class="section-lead">Cuéntanos tu idea: ocasión, estilos y, si quieres, una imagen de referencia.</p>
 
-    {% if messages %}
+{% if messages %}
     {% for message in messages %}
         <p class="mensaje-exito">{{ message }}</p>
     {% endfor %}
-    {% endif %}
+{% endif %}
 
-    <form method="post" enctype="multipart/form-data" class="form-outfit panel">
-        {% csrf_token %}
-        <div style="display:grid; gap:12px;">
+<form method="post" enctype="multipart/form-data" class="form-outfit panel">
+    {% csrf_token %}
+    <div style="display:grid; gap:12px;">
 
-            {{ form.non_field_errors }}
+        {{ form.non_field_errors }}
 
-            <div>
-                <label for="{{ form.nombre.id_for_label }}"><strong>Nombre</strong></label>
-                {{ form.nombre }}
-                {{ form.nombre.errors }}
-            </div>
-
-            <div>
-                <label for="{{ form.email.id_for_label }}"><strong>Email</strong></label>
-                {{ form.email }}
-                {{ form.email.errors }}
-            </div>
-
-            <div>
-                <label for="{{ form.ocasion.id_for_label }}"><strong>Ocasión</strong></label>
-                {{ form.ocasion }}
-                {{ form.ocasion.errors }}
-            </div>
-
-            <div>
-                <label for="{{ form.estilos.id_for_label }}"><strong>Estilos</strong> 
-                    <span class="meta">(ej. Minimalista, Sporty)</span>
-                </label>
-                {{ form.estilos }}
-                {{ form.estilos.errors }}
-                <p class="meta">Mantén Ctrl (Windows/Linux) o Cmd (Mac) para seleccionar varios.</p>
-            </div>
-
-            <div>
-                <label for="{{ form.descripcion.id_for_label }}"><strong>Descripción</strong></label>
-                {{ form.descripcion }}
-                {{ form.descripcion.errors }}
-            </div>
-
-            <!-- CAMPO DE IMAGEN CORRECTO -->
-            <div>
-                <label for="id_imagen"><strong>Imagen (opcional)</strong></label>
-                {{ form.imagen }}
-                <img id="preview-img" src="#" alt="Previsualización"
-                    style="display:none; max-width:200px; margin-top:10px; border-radius:8px;">
-                {{ form.imagen.errors }}
-            </div>
-
-            <button type="submit" class="badge" style="align-self:start; cursor:pointer;">
-                Enviar outfit
-            </button>
-
+        <!-- NOMBRE -->
+        <div>
+            <label for="{{ form.nombre.id_for_label }}"><strong>Nombre</strong></label>
+            {{ form.nombre }}
+            {{ form.nombre.errors }}
         </div>
-    </form>
 
-    <!-- PREVIEW JS -->
-    <script>
-    document.getElementById("id_imagen").addEventListener("change", function(event) {
-        let file = event.target.files[0];
-        let preview = document.getElementById("preview-img");
+        <!-- EMAIL -->
+        <div>
+            <label for="{{ form.email.id_for_label }}"><strong>Email</strong></label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
 
-        if (file) {
-            preview.src = URL.createObjectURL(file);
-            preview.style.display = "block";
-        } else {
-            preview.style.display = "none";
-        }
-    });
-    </script>
+        <!-- OCASIÓN -->
+        <div>
+            <label for="{{ form.ocasion.id_for_label }}"><strong>Ocasión</strong></label>
+            {{ form.ocasion }}
+            {{ form.ocasion.errors }}
+        </div>
+
+        <!-- ESTILOS -->
+        <div>
+            <label for="{{ form.estilos.id_for_label }}"><strong>Estilos</strong> 
+                <span class="meta">(ej. Minimalista, Sporty)</span>
+            </label>
+            {{ form.estilos }}
+            {{ form.estilos.errors }}
+            <p class="meta">Mantén Ctrl (Windows/Linux) o Cmd (Mac) para seleccionar varios.</p>
+        </div>
+
+        <!-- DESCRIPCIÓN -->
+        <div>
+            <label for="{{ form.descripcion.id_for_label }}"><strong>Descripción</strong></label>
+            {{ form.descripcion }}
+            {{ form.descripcion.errors }}
+
+            <p id="desc-count" class="meta">0 / 300 caracteres</p>
+            <p id="desc-error" class="error-msg" style="display:none;">Has superado el límite de 300 caracteres.</p>
+        </div>
+
+        <!-- IMAGEN -->
+        <div>
+            <label for="id_imagen"><strong>Imagen (opcional)</strong></label>
+            {{ form.imagen }}
+            <img id="preview-img" src="#" alt="Previsualización"
+                style="display:none; max-width:200px; margin-top:10px; border-radius:8px;">
+            {{ form.imagen.errors }}
+        </div>
+
+        <!-- BOTÓN -->
+        <button type="submit" id="submit-btn" class="badge" style="align-self:start; cursor:pointer;">
+            Enviar outfit
+        </button>
+    </div>
+</form>
 
 {% endblock %}
+
+{% block extra_js %}
+<script>
+// PREVISUALIZACIÓN IMAGEN
+document.getElementById("id_imagen").addEventListener("change", function(event) {
+    let file = event.target.files[0];
+    let preview = document.getElementById("preview-img");
+
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    } else {
+        preview.style.display = "none";
+    }
+});
+
+// VALIDACIÓN DE DESCRIPCIÓN (300 caracteres)
+document.addEventListener("DOMContentLoaded", function () {
+
+    const descInput = document.querySelector("textarea[name='descripcion']");
+    const descCount = document.getElementById("desc-count");
+    const errorMsg = document.getElementById("desc-error");
+    const submitBtn = document.getElementById("submit-btn");
+
+    if (!descInput || !submitBtn) {
+        console.warn("No se encontró el textarea de descripción.");
+        return;
+    }
+
+    const actualizarEstado = () => {
+        const length = descInput.value.length;
+
+        descCount.textContent = `${length} / 300 caracteres`;
+
+        // Reset visual
+        descInput.classList.remove("textarea-error");
+        errorMsg.style.display = "none";
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("btn-disabled-danger");
+
+        // Advertencia naranja
+        if (length > 250 && length <= 300) {
+            descCount.style.color = "#e67300";
+        } else {
+            descCount.style.color = "#555";
+        }
+
+        // Error rojo
+        if (length > 300) {
+            descInput.classList.add("textarea-error");
+            errorMsg.style.display = "block";
+            descCount.style.color = "#cc0000";
+            
+            submitBtn.disabled = true;
+            submitBtn.classList.add("btn-disabled-danger");
+        }
+    };
+
+    actualizarEstado();
+    descInput.addEventListener("input", actualizarEstado);
+});
+</script>
+{% endblock %}
+
