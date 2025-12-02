@@ -1,5 +1,7 @@
 #Requerimientos para desarrollo local
 # Ajusta las versiones si tu entorno requiere una versión específica.
 
-Django>=3.2,<5.0
-Pillow>=9.0.0
+Django>=4.2
+gunicorn
+whitenoise
+psycopg2-binary
