@@ -1,7 +1,5 @@
-#Requerimientos para desarrollo local
-# Ajusta las versiones si tu entorno requiere una versión específica.
-
 Django>=4.2
 gunicorn
 whitenoise
 psycopg2-binary
+Pillow
