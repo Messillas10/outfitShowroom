@@ -4,12 +4,12 @@ from . import views
 app_name = "showroom"
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("outfits/", views.outfit_list, name="outfit_list"),
-    path("outfits/<int:pk>/", views.outfit_detail, name="outfit_detail"),
-    path("occasions/", views.occasion_list, name="occasion_list"),
-    path("occasions/<slug:slug>/", views.occasion_detail, name="occasion_detail"),
-    path("styles/", views.style_list, name="style_list"),
-    path("styles/<slug:slug>/", views.style_detail, name="style_detail"),
-    path('enviar-idea/', views.enviar_outfit_ideal, name='enviar_outfit_ideal'),
+    path("", views.IndexView.as_view(), name="index"),
+    path("outfits/", views.OutfitListView.as_view(), name="outfit_list"),
+    path("outfits/<int:pk>/", views.OutfitDetailView.as_view(), name="outfit_detail"),
+    path("occasions/", views.OccasionListView.as_view(), name="occasion_list"),
+    path("occasions/<slug:slug>/", views.OccasionDetailView.as_view(), name="occasion_detail"),
+    path("styles/", views.StyleListView.as_view(), name="style_list"),
+    path("styles/<slug:slug>/", views.StyleDetailView.as_view(), name="style_detail"),
+    path('enviar-idea/', views.EnviarOutfitIdeaView.as_view(), name='enviar_outfit_ideal'),
 ]
